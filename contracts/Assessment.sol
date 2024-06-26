@@ -1,25 +1,30 @@
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
-
 //import "hardhat/console.sol";
 
 contract Assessment {
     address payable public owner;
     uint256 public balance;
+    string private password; 
 
-    event Deposit(uint256 amount);
-    event Withdraw(uint256 amount);
+ event Deposit(address indexed account, uint amount, uint timestamp);
+    event Withdraw(address indexed account, uint amount, uint timestamp);
 
-    constructor(uint initBalance) payable {
+    string[] public transactionTypes;
+    uint[] public transactionAmounts;
+    uint[] public transactionTimestamps;
+
+    constructor(uint _balance, string memory _password) payable {
         owner = payable(msg.sender);
-        balance = initBalance;
+        balance = _balance;
+        password = _password; 
     }
 
-    function getBalance() public view returns(uint256){
+    function getBalance() public view returns(uint){
         return balance;
     }
 
-    function deposit(uint256 _amount) public payable {
+    function deposit(uint _amount) public payable {
         uint _previousBalance = balance;
 
         // make sure this is the owner
@@ -28,12 +33,15 @@ contract Assessment {
         // perform transaction
         balance += _amount;
 
-        // assert transaction completed successfully
+        
+         transactionTypes.push("Deposit");
+        transactionAmounts.push(_amount);
+        transactionTimestamps.push(block.timestamp);
+
         assert(balance == _previousBalance + _amount);
 
-        // emit the event
-        emit Deposit(_amount);
-    }
+        emit Deposit(msg.sender, _amount, block.timestamp);}
+
 
     // custom error
     error InsufficientBalance(uint256 balance, uint256 withdrawAmount);
@@ -51,10 +59,24 @@ contract Assessment {
         // withdraw the given amount
         balance -= _withdrawAmount;
 
-        // assert the balance is correct
-        assert(balance == (_previousBalance - _withdrawAmount));
+        transactionTypes.push("Withdraw");
+        transactionAmounts.push(_withdrawAmount);
+        transactionTimestamps.push(block.timestamp);
 
-        // emit the event
-        emit Withdraw(_withdrawAmount);
+        assert(balance == _previousBalance - _withdrawAmount);
+    
+        emit Withdraw(msg.sender, _withdrawAmount, block.timestamp);
+    }
+
+
+    function getTransactionHistory() public view returns (string[] memory, uint256[] memory, uint256[] memory) {
+        return (transactionTypes, transactionAmounts, transactionTimestamps);
+    }
+        
+
+    
+    function authenticate(string memory _password) public view returns (bool) {
+        return (keccak256(abi.encodePacked(_password)) == keccak256(abi.encodePacked(password)));
     }
 }
+
