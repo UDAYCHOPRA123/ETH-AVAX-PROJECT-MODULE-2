@@ -10,6 +10,8 @@ This Meta ATM is the updated version of the starter template that was provided t
 6. **CSS** - We made our website more effective with the Help of our CSS coding making it more effective.  
 ## Getting Started
 ### Video Demo 
+[Click Here For Video Explanation](https://www.loom.com/share/42df0d7b9b83469889ead1231b5240ec?sid=7f50edd7-c7cf-428a-9a33-96745660110a) 
+     
 
 ### Prerequisites: 
 1. Node.js (v14 or higher) - [Download Node.js](https://nodejs.org/)
@@ -61,5 +63,6 @@ This Meta ATM is the updated version of the starter template that was provided t
  **Now We Can Use Our Meta ATM and can use it for Depositing and Withdrawing Ether.**
 
  ## Authors
- Metacrafter [UDAY CHOPRA] -  
+Metacrafter UDAY CHOPRA ---->
+[UDAY CHOPRA](https://www.linkedin.com/in/uday-chopra-86701b2b0/) 
     
