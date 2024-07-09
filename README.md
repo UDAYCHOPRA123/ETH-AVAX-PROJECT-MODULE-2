@@ -10,7 +10,7 @@ This Meta ATM is the updated version of the starter template that was provided t
 6. **CSS** - We made our website more effective with the Help of our CSS coding making it more effective.  
 ## Getting Started
 ### Video Demo 
-[Click Here For Video Explanation](https://www.loom.com/share/42df0d7b9b83469889ead1231b5240ec?sid=7f50edd7-c7cf-428a-9a33-96745660110a) 
+[Click Here For Video Explanation](https://www.loom.com/share/e84f252c38f54df785147c3deea7651b?sid=af5dcb29-e19c-4bae-8317-e6dea757cdf5) 
      
 
 ### Prerequisites: 
